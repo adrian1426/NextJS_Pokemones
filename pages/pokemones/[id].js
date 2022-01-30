@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Imagen from 'next/image';
 
 const DetallePokemon = ({ data }) => {
   const router = useRouter();
@@ -6,7 +8,15 @@ const DetallePokemon = ({ data }) => {
 
   return (
     <div>
-      <p>Pokemon: {id} - {data.name}</p>
+      <h1>Pokemon: {id} - {data.name}</h1>
+      <br />
+      <Imagen
+        src={data.sprites.front_default}
+        width={400}
+        height={400}
+      />
+      <br />
+      <Link href='/'>Regresar</Link>
     </div>
   );
 };
