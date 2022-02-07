@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Index from '../../pages/index';
+import Index, { getStaticProps } from '../../pages/index';
 
 describe('Index.js', () => {
 
@@ -21,6 +21,26 @@ describe('Index.js', () => {
 
       const urlHref = pokemon.getAttribute('href');
       expect(urlHref).toEqual('/pokemones/1');
+    })
+  });
+
+
+  describe('getStaticProps', () => {
+    global.fetch = jest.fn()
+      .mockImplementation(url => {
+        console.log(url);
+        return new Promise(resolve => {
+          resolve({
+            json: () => Promise.resolve({
+              results: 'lista de pokemones'
+            })
+          })
+        })
+      });
+
+    it('consumiendo servicio', async () => {
+      const { props } = await getStaticProps();
+      expect(props.pokemones).toEqual('lista de pokemones');
     })
   });
 });
