@@ -5,7 +5,13 @@ const Pokemon = props => {
   const idPokemon = pokemon.url.split('/').filter(x => x).pop();
 
   return (
-    <li><Link href={`/pokemones/${idPokemon}`}>{pokemon.name}</Link></li>
+    <li data-testid={idPokemon}>
+      <Link
+        href={`/pokemones/${idPokemon}`}
+      >
+        {pokemon.name}
+      </Link>
+    </li>
   );
 };
 
