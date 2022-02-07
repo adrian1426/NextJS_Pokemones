@@ -7,12 +7,20 @@ describe('Index.js', () => {
     it('Se renderiza ', () => {
       const { getByTestId } = render(
         <Index
-          pokemones={[]}
+          pokemones={[
+            { name: 'Adrian', url: '/pokemon/detalle/1' }
+          ]}
         />
-      )
+      );
 
       const parrafo = getByTestId('titulo-id')
       expect(parrafo).toBeInTheDocument();
+
+      const pokemon = screen.getByText('Adrian');
+      expect(pokemon).toBeInTheDocument();
+
+      const urlHref = pokemon.getAttribute('href');
+      expect(urlHref).toEqual('/pokemones/1');
     })
   });
 });
