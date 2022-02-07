@@ -5,7 +5,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <h1>Pokemones</h1>
+      <h1 data-testid='titulo-id'>Pokemones</h1>
       <ul>
         {
           pokemones.map(pokemon => (

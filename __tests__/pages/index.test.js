@@ -1,5 +1,18 @@
+import { render, screen } from '@testing-library/react';
+import Index from '../../pages/index';
+
 describe('Index.js', () => {
-  it('Suma: 2+2', () => {
-    expect(2 + 2).toBe(4);
-  })
+
+  describe('Renderizado de componente', () => {
+    it('Se renderiza ', () => {
+      const { getByTestId } = render(
+        <Index
+          pokemones={[]}
+        />
+      )
+
+      const parrafo = getByTestId('titulo-id')
+      expect(parrafo).toBeInTheDocument();
+    })
+  });
 });
